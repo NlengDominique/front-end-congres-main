@@ -35,7 +35,7 @@
           <div class="p-6 transition-all transform bg-gray-800 rounded-lg shadow-inner hover:bg-gray-700 hover:shadow-2xl hover:-translate-y-2">
             <h2 class="mb-4 text-2xl font-bold text-yellow-400">Dates et lieu</h2>
             <p class="text-gray-300">
-              Le prochain congrès se déroulera du <span class="font-semibold">23 au 26 janvier 2026</span> dans le
+              Le prochain congrès se déroulera du <span class="font-semibold">23 au 26 janvier 2025</span> dans le
               village Bassa, situé dans la région du Littoral Cameroun. Ce lieu historique accueillera des festivités et
               des échanges enrichissants autour de notre culture et des défis contemporains de notre communauté.
             </p>

@@ -1,13 +1,14 @@
 <template>
-  <div >
+  <div>
     <!-- Hero Banner -->
-    <div class="relative bg-gradient-to-b from-[#9C7C13] text-white -z-0">
+    <div class="relative bg-gradient-to-b from-[#9C7C13] to-[#F8E7AB] text-white -z-0">
       <div class="absolute inset-0 bg-opacity-50"></div>
       <div class="container mx-auto px-6 py-20 text-center relative z-10">
-        <h1 class="text-5xl font-bold leading-tight animate-fade-in-down">Decouvrir les Associations</h1>
+        <h1 class="text-5xl font-bold leading-tight animate-fade-in-down drop-shadow-lg">Découvrir les Associations</h1>
         <p class="mt-4 text-lg animate-fade-in-down">
-          Explorez une collection de <span class="font-bold">{{ associations.length }}</span> associations uniques, chacune riche en culture et en traditions.
+          Explorez une collection de <span class="font-bold">{{ associations.length }}</span> associations uniques, chacune riche en culture et traditions.
         </p>
+      
       </div>
     </div>
 
@@ -21,7 +22,7 @@
           v-model="searchQuery"
           type="text"
           placeholder="Rechercher une association..."
-          class="w-1/2 py-3 pl-10 pr-4 transition duration-200 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+          class="w-3/4 md:w-1/2 py-3 pl-10 pr-4 rounded-full shadow-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
           @input="handleSearch"
         />
         <MagnifyingGlassIcon class="absolute w-5 h-5 text-gray-400 left-3 top-3" />
@@ -29,41 +30,28 @@
     </div>
 
     <!-- Liste des associations -->
-    <div class="container mx-auto px-6 py-6 grid gap-6 md:grid-cols-2 lg:grid-cols-3 font-sans">
+    <div class="container mx-auto px-6 py-6 grid gap-8 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
       <div
         v-for="association in associations"
         :key="association.id"
-        class="p-6 bg-white rounded-lg shadow-lg group hover:shadow-xl transition"
+        class="p-6 bg-white rounded-lg shadow-lg hover:shadow-xl transition transform hover:scale-105"
       >
-        <!-- Logo de l'association depuis Lorem Picsum -->
-        <!-- <div class="overflow-hidden rounded-lg mb-4">
-          <img
-            :src="`https://picsum.photos/200/200?random=${association.id}`"
-            :alt="'Logo de ' + association.nom"
-            class="w-full h-48 object-cover transition-transform duration-200 group-hover:scale-110"
-          />
-        </div> -->
-        <!-- Nom de l'association -->
-        <h2 class="text-xl font-bold text-gray-800 mb-2 group-hover:text-blue-600">
-          {{ association.nom }}
-        </h2>
-
-        
-        <!-- Description brève -->
-        <p class="text-gray-600 text-sm">
-          {{ association.description }}
-        </p>
-        <!-- Informations supplémentaires -->
-        <div class="mt-4 ">
-          <p class="text-gray-600 text-sm mb-3"><strong>President:</strong> {{ association.president }}</p>
-          <p class="text-gray-600 text-sm mb-3"><strong>Sigle:</strong> {{ association.sigle }}</p>
-          <p class="text-gray-600 text-sm mb-3"><strong>Adresse:</strong> {{ association.addresse }}</p>
-          <p class="text-gray-600 text-sm mb-3"><strong>Email:</strong> {{ association.email }}</p>
-          <p class="text-gray-600 text-sm mb-3"><strong>Téléphone:</strong> {{ association.tel }}</p>
-          <p class="text-gray-600 text-sm mb-3"><strong>Ville:</strong> {{ association.ville }}</p>
-          <p class="text-gray-600 text-sm mb-3"><strong>Pays:</strong> {{ association.pays }}</p>
-          <p class="text-gray-600 text-sm mb-3"><strong>Site Web:</strong> <a :href="association.site_web" target="_blank" class="text-blue-500">{{ association.site_web }}</a></p>
-        </div>
+        <h2 class="text-xl font-bold text-gray-800 mb-2 group-hover:text-blue-600">{{ association.nom }}</h2>
+        <p class="text-gray-600 text-sm mb-4">{{ association.description }}</p>
+        <ul class="text-sm text-gray-600 space-y-2">
+          <li><strong>Président :</strong> {{ association.president }}</li>
+          <li><strong>Sigle :</strong> {{ association.sigle }}</li>
+          <li><strong>Email :</strong> {{ association.email }}</li>
+          <li><strong>Téléphone :</strong> {{ association.tel }}</li>
+          <li><strong>Ville :</strong> {{ association.ville }}</li>
+        </ul>
+        <a
+          :href="association.site_web"
+          target="_blank"
+          class="mt-4 inline-block text-blue-500 font-semibold hover:underline"
+        >
+          Visiter le site web
+        </a>
       </div>
     </div>
 
@@ -78,6 +66,7 @@
     </div>
   </div>
 </template>
+
 
 <script>
 import { ref, onMounted } from "vue";

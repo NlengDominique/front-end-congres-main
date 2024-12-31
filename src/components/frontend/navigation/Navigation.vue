@@ -151,9 +151,8 @@ export default {
           label: "Accueil",
           items: [
             { label: 'A propos', route: '/about-congress' },
-            { label: 'Mot du Chef Canton NDOGBATJECK', route: '/motChef' },
             { label: 'Mot du Président ADNA NDOGBATJECK', route: '/motPresident' },
-            { label: 'Présentation du Canton NDOGBATJECK', route: '/presentation-canton' },
+            { label: "Mot du chef du village d'Ekoangombè-Sud", route: '/motChef' },
             { label: 'Listes des villages NDOGBATJECK', route: '/liste-villages' },
             { label: 'Listes des Associations NDOGBATJECK', route: '/liste-associations' },
             { label: "L'Hôte du congrès NDOGBATJECK", route: '/hote-congres' }

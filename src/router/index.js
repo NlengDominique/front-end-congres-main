@@ -24,6 +24,8 @@ import { path } from "framer-motion/client";
 import hoteCongres from "../components/frontend/hoteCongres/hoteCongres.vue";
 import ListeAssociations from "../components/frontend/liste-associations/ListeAssociations.vue";
 import Boutique from "../components/frontend/Boutique/Boutique.vue";
+import ComingSoon from "../views/ComingSoon.vue";
+import Hi from "../components/frontend/liste-activites/Hi.vue";
 
 const routes = [
   {
@@ -35,18 +37,18 @@ const routes = [
     path: "/about-congress",
     component: AboutCongress,
   },
-  {
-    path:"/motChef",
-    component:motChef,
-  },
-  {
-    path:"/motPresident",
-    component:motPresident,
-  },
-  {
-    path:"/presentation-canton",
-    component:presentationCanton,
-  },
+  // {
+  //   path:"/motChef",
+  //   component:motChef,
+  // },
+  // {
+  //   path:"/motPresident",
+  //   component:motPresident,
+  // },
+  // {
+  //   path:"/presentation-canton",
+  //   component:presentationCanton,
+  // },
   {
     path:"/liste-associations",
     component:ListeAssociations,
@@ -68,7 +70,7 @@ const routes = [
     component: Boutique,
   },
   {
-    path: "/hynme",
+    path: "/hymne",
     name: "Hynme",
     component: Hynme,
   },
@@ -97,6 +99,42 @@ const routes = [
     path: "/contact",
     component: Contact,
   },
+  {
+    path: "/motPresident",
+    component: ComingSoon,
+  },
+  {
+    path: "/motChef",
+    component: ComingSoon,
+  },
+  {
+    path:"/organigramme-comite",
+    component: ComingSoon,
+
+  },
+  {
+    path:"/activites",
+    component: Hi,
+
+  },
+  {
+    path:"/bureau",
+    component: ComingSoon,
+
+  },
+  {
+    path:"/evenements",
+    component: ComingSoon,
+
+  },
+  {
+    path:"/programme",
+    component: ComingSoon,
+
+  },
+  
+
+
   {
     path: "/Admin",
     children: [
@@ -129,6 +167,13 @@ const routes = [
     name: "notfound",
     component: NotFound,
   },
+  // {
+  //   path: "/:catchAll(.*)", // Cela attrape toutes les routes non définies
+  //   name: "comingsoon",
+  //   component: ComingSoon,
+  // },
+
+
 ];
 
 const router = createRouter({

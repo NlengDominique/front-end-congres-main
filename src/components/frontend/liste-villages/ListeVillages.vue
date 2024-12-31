@@ -1,11 +1,12 @@
 <template>
-  <div class="" >
+  <div>
     <!-- Hero Banner -->
-    <div class="relative bg-green-700 text-white -z-0">
+    <div class="relative bg-gradient-to-b from-[#4CAF50] to-[#A8E6A1]
+ text-white -z-0">
       <div class="absolute inset-0 bg-opacity-50"></div>
       <div class="container mx-auto px-6 py-20 text-center relative z-10">
-        <h1 class="text-4xl font-bold leading-tight animate-fade-in-down md:text-5xl ">Decouvrir les Villages Ndogbatjeck</h1>
-        <p class="mt-4 text-lg animate-fade-in-down ">
+        <h1 class="text-4xl font-bold leading-tight animate-fade-in-down md:text-5xl ">Découvrir les Villages Ndogbatjeck</h1>
+        <p class="mt-4 text-lg animate-fade-in-down">
           Explorez une collection de <span class="font-bold">{{ villages.length }}</span> villages uniques, chacun riche en culture et en traditions.
         </p>
       </div>
@@ -21,42 +22,39 @@
           v-model="searchQuery"
           type="text"
           placeholder="Rechercher un village..."
-          class="w-1/2 py-3 pl-10 pr-4 transition duration-200 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500"
+          class="w-3/4 md:w-1/2 py-3 pl-10 pr-4 rounded-full shadow-md  focus:ring-blue-500 focus:border-blue-500"
           @input="handleSearch"
         />
         <MagnifyingGlassIcon class="absolute w-5 h-5 text-gray-400 left-3 top-3" />
       </div>
-    </div> 
+    </div>
 
     <!-- Liste des villages -->
     <div class="container mx-auto px-6 py-6 flex flex-col gap-6">
-  <div
-    v-for="village in villages"
-    :key="village.id"
-    class="p-6  rounded-lg shadow-lg group hover:shadow-xl transition w-full"
-  >
-    <!-- Image du village depuis Picsum -->
-    <!-- <div class="overflow-hidden rounded-lg mb-4">
-      <img
-        :src="`https://picsum.photos/1200/400?random=${village.id}`"
-        :alt="'Image de ' + village.nom"
-        class="w-full h-48 object-cover transition-transform duration-200 group-hover:scale-110"
-      />
-    </div> -->
-    <!-- Nom du village -->
-    <h2 class="text-xl font-bold text-gray-800 mb-2 group-hover:text-green-600">
-      {{ village.nom }}
-    </h2>
-    <h2 class="text-xl font-bold text-gray-800 mb-2 group-hover:text-green-600">
-      Chef du village : {{ village.chef }}
-    </h2>
-    <!-- Description brève -->
-    <p class="text-gray-600 text-sm">
-      {{ village.description }}
-    </p>
-  </div>
-</div>
+      <div
+        v-for="village in villages"
+        :key="village.id"
+        class="p-6 rounded-lg shadow-lg group hover:shadow-xl transition w-full cursor-pointer"
+        @click="toggleDescription(village.id)"
+      >
+        <!-- Nom du village -->
+        <h2 class="text-xl font-bold text-gray-800 mb-2 group-hover:text-yellow-300">
+          {{ village.nom }}
+        </h2>
+        <h2 class="text-xl font-bold text-gray-800 mb-2 group-hover:text-yellow-300">
+          Chef du village : {{ village.chef }}
+        </h2>
+        <!-- Description brève -->
+        <p class="text-gray-600 text-sm">
+          {{ village.description }}
+        </p>
 
+        <!-- Description supplémentaire dépliable -->
+        <div v-if="village.isOpen" class="mt-4 p-4 bg-gray-100 rounded-lg">
+          <p>{{ village.detailedDescription }}</p>
+        </div>
+      </div>
+    </div>
 
     <!-- Message lorsque aucun village n'est trouvé -->
     <div v-if="villages.length === 0" class="flex flex-col items-center justify-center p-10">
@@ -96,6 +94,8 @@ export default {
         villages.value = response.map((village) => ({
           ...village,
           description: village.description || "Découvrez ce village riche en culture et traditions.",
+          isOpen: false, // Initialisation de l'état pour la description
+          detailedDescription: village.detailedDescription || "Ceci est une description plus détaillée du village, avec son histoire et ses traditions."
         }));
       } catch (error) {
         toast.error("Une erreur est survenue lors du chargement des villages");
@@ -113,6 +113,14 @@ export default {
       }, 300);
     };
 
+    // Toggle de l'état pour afficher/masquer la description détaillée
+    const toggleDescription = (villageId) => {
+      const village = villages.value.find(v => v.id === villageId);
+      if (village) {
+        village.isOpen = !village.isOpen;
+      }
+    };
+
     // Charger les villages au montage du composant
     onMounted(loadVillages);
 
@@ -121,6 +129,7 @@ export default {
       villages,
       searchQuery,
       handleSearch,
+      toggleDescription,
     };
   },
 };
@@ -186,11 +195,8 @@ button:hover {
 }
 
 .hover\:translate-y-2:hover {
-    transform: translateY(-0.5rem);}
-/* Hero Banner Styles */
-.relative {
-  background-image: url('/public/hero-banner.jpg'); 
-  background-size: cover;
-  background-position: center;
+  transform: translateY(-0.5rem);
 }
+/* Hero Banner Styles */
+
 </style>
